@@ -14,7 +14,11 @@ from rest_framework.generics import (
 from .models import Person
 
 #Importing serializer
-from .serializers import PersonaSerializer
+from .serializers import (
+    PersonaSerializer,
+    PersonaSerializer2,
+    ExtendedSerializer,
+)
 
 """
     Parsear un elemento o instancia a otro de tipo Json y viceversa 
@@ -51,6 +55,16 @@ class GetOnePerson(RetrieveAPIView):
     serializer_class = PersonaSerializer
     #El query_Set es quien se encarga de manejar el modeo en cuestion
     queryset = Person.objects.filter()
+
+
+class GetListPerson(ListAPIView):
+    #@override
+    serializer_class = PersonaSerializer2
+    queryset = Person.objects.all()
+
+class GetLitsPersonExtended(ListAPIView):
+    serializer_class = ExtendedSerializer
+    queryset = Person.objects.all()
 
 # POST
 class PersonCreateView(CreateAPIView):

@@ -36,5 +36,13 @@ urlpatterns = [
     path(
         'api/persona/updateretrieve/<pk>/',
         views.PersonRetrieveView.as_view(),        
+    ),
+    path(
+        'api/persona/list2/',
+        views.GetListPerson.as_view(),
+    ),
+    path(
+        'api/persona/extendedlist/',
+        views.GetLitsPersonExtended.as_view(),
     )
 ]
