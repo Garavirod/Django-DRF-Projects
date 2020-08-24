@@ -14,11 +14,27 @@ urlpatterns = [
         views.PersonaListApiView.as_view(),        
     ),
     path(
-        'api/persona/one/<idPersona>',
+        'api/persona/detail/<pk>/',
         views.GetOnePerson.as_view(),        
     ),
     path(
         'api/persona/names/<namePersona>/',
         views.GetNames.as_view(),        
+    ),
+    path(
+        'api/persona/register/',
+        views.PersonCreateView.as_view(),        
+    ),
+    path(
+        'api/persona/delete/<pk>/',
+        views.PersonDeleteView.as_view(),        
+    ),
+    path(
+        'api/persona/update/<pk>/',
+        views.PersonUpdateView.as_view(),        
+    ),
+    path(
+        'api/persona/updateretrieve/<pk>/',
+        views.PersonRetrieveView.as_view(),        
     )
 ]
