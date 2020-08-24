@@ -20,7 +20,7 @@ class Hobie(TimeStampedModel):
 #Modelo Persona
 class Person(TimeStampedModel):
     """  Modelo para registrar personas de una agenda  """
-    # Relationship
+    # ManyToMany means a model is a collections '[....]' 
     hobiies = models.ManyToManyField(Hobie, verbose_name=("Hobies de la persona"))
 
     full_name = models.CharField(

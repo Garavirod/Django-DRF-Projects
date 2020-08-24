@@ -44,5 +44,17 @@ urlpatterns = [
     path(
         'api/persona/extendedlist/',
         views.GetLitsPersonExtended.as_view(),
+    ),
+    path(
+        'api/hobbies/',
+        views.GetHobbies.as_view(),
+    ),
+    path(
+        'api/meetings/',
+        views.GetMeetings.as_view(),
+    ),
+    path(
+        'api/hobbiesperson/',
+        views.GetPersonHobbies.as_view(),
     )
 ]

@@ -11,13 +11,20 @@ from rest_framework.generics import (
 )
 
 # Importing models
-from .models import Person
+from .models import (
+    Person,
+    Hobie,
+    Meeting,
+)
 
 #Importing serializer
 from .serializers import (
     PersonaSerializer,
     PersonaSerializer2,
     ExtendedSerializer,
+    HobbieSerializer,
+    MeetingSerializer,
+    PersonaHobiesSerializer,
 )
 
 """
@@ -66,6 +73,18 @@ class GetLitsPersonExtended(ListAPIView):
     serializer_class = ExtendedSerializer
     queryset = Person.objects.all()
 
+class GetHobbies(ListAPIView):
+    #@override
+    serializer_class = HobbieSerializer
+    queryset = Hobie.objects.all()
+class GetMeetings(ListAPIView):
+    #@override
+    serializer_class = MeetingSerializer
+    queryset = Meeting.objects.all()
+
+class GetPersonHobbies(ListAPIView):
+    serializer_class = PersonaHobiesSerializer
+    queryset = Person.objects.all()
 # POST
 class PersonCreateView(CreateAPIView):
     serializer_class = PersonaSerializer    
