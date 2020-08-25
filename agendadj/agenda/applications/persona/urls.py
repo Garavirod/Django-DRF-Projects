@@ -15,7 +15,8 @@ urlpatterns = [
     ),
     path(
         'api/persona/detail/<pk>/',
-        views.GetOnePerson.as_view(),        
+        views.GetOnePerson.as_view(),
+        name = 'detail-person'        
     ),
     path(
         'api/persona/names/<namePersona>/',
@@ -60,5 +61,10 @@ urlpatterns = [
     path(
         'api/meetings2/',
         views.GetMeetings2.as_view(),
+    )
+    ,
+    path(
+        'api/meetings-link/',
+        views.GetApiListaLink.as_view(),
     )
 ]

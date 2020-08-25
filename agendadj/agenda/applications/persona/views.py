@@ -25,7 +25,8 @@ from .serializers import (
     HobbieSerializer,
     MeetingSerializer,
     PersonaHobiesSerializer,
-    MeetingSerializer2
+    MeetingSerializer2,
+    MeetingSerializerLink
 )
 
 """
@@ -91,6 +92,9 @@ class GetMeetings2(ListAPIView):
     serializer_class = MeetingSerializer2
     queryset = Meeting.objects.all()
 
+class GetApiListaLink(ListAPIView):
+    serializer_class = MeetingSerializerLink
+    queryset = Meeting.objects.all()
 
 # POST
 class PersonCreateView(CreateAPIView):

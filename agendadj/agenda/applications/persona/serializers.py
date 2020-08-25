@@ -102,8 +102,7 @@ class MeetingSerializer2(serializers.ModelSerializer):
     SerializaerLink
 """
 
-class MeetingSerializerLink(serializers.ModelSerializer):
-    
+class MeetingSerializerLink(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Meeting
         fields = (
@@ -111,6 +110,13 @@ class MeetingSerializerLink(serializers.ModelSerializer):
             'date',
             'hora',
             'issue',
-            'person',
+            'person', #FK
         )
+        #Here goes the model atribute is is goig to be a link
+        extra_kwargs = {
+            'person': {
+                'view_name' : 'persona_app:detail-person',
+                'lookup_field' : 'pk' #Mediante qué tributo va  a cargar el regostro
+            }
+        }
 
