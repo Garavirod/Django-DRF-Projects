@@ -63,7 +63,7 @@ class PersonaHobiesSerializer(serializers.ModelSerializer):
 """
 
 class MeetingSerializer(serializers.ModelSerializer):
-    #Resue a serializiser to sending in other serializer
+    #Reuse a serializiser to sending in other serializer
     person = PersonaSerializer()
     class Meta:
         model = Meeting
@@ -73,3 +73,44 @@ class MeetingSerializer(serializers.ModelSerializer):
             'hora',
             'person',
         )
+
+# SERIALIZER METHOD FIELD
+class MeetingSerializer2(serializers.ModelSerializer):
+    #  It  creates a fields that uses data from fields that already exist, (derivated atribute)
+    # The result of fecha_hora it will be the reult of processig any data else
+    # Always put the new filrd on the object's tuple fields 
+    fecha_hora = serializers.SerializerMethodField()
+    class Meta:
+        model = Meeting
+        fields = (
+            'id',
+            'date',
+            'hora',
+            'issue',
+            'person',
+            'fecha_hora', #new derivated attribute
+        )
+    """
+        Method tha returns the precess data
+        @params obj is each register in de json
+        Always is this structure
+    """
+    def get_fecha_hora(self,obj):
+        return str(obj.date) + '-' + str(obj.hora)
+
+"""
+    SerializaerLink
+"""
+
+class MeetingSerializerLink(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Meeting
+        fields = (
+            'id',
+            'date',
+            'hora',
+            'issue',
+            'person',
+        )
+

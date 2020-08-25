@@ -56,5 +56,9 @@ urlpatterns = [
     path(
         'api/hobbiesperson/',
         views.GetPersonHobbies.as_view(),
+    ),
+    path(
+        'api/meetings2/',
+        views.GetMeetings2.as_view(),
     )
 ]
