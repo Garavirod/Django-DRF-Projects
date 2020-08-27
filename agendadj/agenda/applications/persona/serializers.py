@@ -1,4 +1,5 @@
-from rest_framework import serializers
+from rest_framework import serializers, pagination
+#Models
 from .models import (
     Person,
     Hobie,
@@ -120,3 +121,7 @@ class MeetingSerializerLink(serializers.HyperlinkedModelSerializer):
             }
         }
 
+
+class PersonPaginationSerializer(pagination.PageNumberPagination):
+    page_size = 3
+    max_page_size = 100 #maxinun numer of pages loads on memory

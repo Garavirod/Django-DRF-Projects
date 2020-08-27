@@ -26,7 +26,8 @@ from .serializers import (
     MeetingSerializer,
     PersonaHobiesSerializer,
     MeetingSerializer2,
-    MeetingSerializerLink
+    MeetingSerializerLink,
+    PersonPaginationSerializer
 )
 
 """
@@ -55,7 +56,7 @@ class PersonaListApiView(ListAPIView):
 class GetNames(ListAPIView):
     serializer_class = PersonaSerializer
     def get_queryset(self):
-        extract = self.kwargs['namePersona']
+        extract = self.kwargs['namePersona'] #Parámetro en el url
         return Person.objects.filter(
             full_name__icontains = extract
         )
@@ -95,6 +96,14 @@ class GetMeetings2(ListAPIView):
 class GetApiListaLink(ListAPIView):
     serializer_class = MeetingSerializerLink
     queryset = Meeting.objects.all()
+
+class GetApiListPaginacion(ListAPIView): 
+    #Paginacion de la data para eviat sobrecargar la ram del servidor
+    serializer_class = PersonaSerializer #Serializer
+    pagination_class = PersonPaginationSerializer #Pagination Serializer
+
+    def get_queryset(self):
+        return Person.objects.all()
 
 # POST
 class PersonCreateView(CreateAPIView):
