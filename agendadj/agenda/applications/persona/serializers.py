@@ -125,3 +125,8 @@ class MeetingSerializerLink(serializers.HyperlinkedModelSerializer):
 class PersonPaginationSerializer(pagination.PageNumberPagination):
     page_size = 3
     max_page_size = 100 #maxinun numer of pages loads on memory
+
+
+class CountMeetingSerializer(serializers.Serializer):
+    person__job = serializers.CharField()
+    cantidad = serializers.IntegerField()

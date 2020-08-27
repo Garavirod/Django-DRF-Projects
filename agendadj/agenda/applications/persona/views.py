@@ -27,7 +27,8 @@ from .serializers import (
     PersonaHobiesSerializer,
     MeetingSerializer2,
     MeetingSerializerLink,
-    PersonPaginationSerializer
+    PersonPaginationSerializer,
+    CountMeetingSerializer,
 )
 
 """
@@ -104,6 +105,17 @@ class GetApiListPaginacion(ListAPIView):
 
     def get_queryset(self):
         return Person.objects.all()
+
+""" 
+    View that uses a manager.py
+"""
+
+class ReunionByJobs(ListAPIView):
+    serializer_class = CountMeetingSerializer
+    def get_queryset(self):
+        return Meeting.objects.count_meetings()
+    
+
 
 # POST
 class PersonCreateView(CreateAPIView):

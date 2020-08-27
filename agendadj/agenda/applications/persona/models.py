@@ -3,6 +3,9 @@ from model_utils.models import TimeStampedModel
 #
 from django.db import models
 
+#MANAGERS
+from .managers import MeetingManager
+
 #Modelo Hobie
 class Hobie(TimeStampedModel):
         hobie = models.CharField(
@@ -66,6 +69,9 @@ class Meeting(TimeStampedModel):
         ("Ausnto"), 
         max_length=50,
     )
+
+    #Manager method
+    objects = MeetingManager()
 
     class Meta:
         verbose_name = 'Meeting'
