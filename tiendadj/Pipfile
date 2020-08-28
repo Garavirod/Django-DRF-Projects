@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asgiref = "==3.2.7"
+Django = "==3.0.5"
+django-model-utils = "==4.0.0"
+djangorestframework = "==3.11.0"
+Pillow = "==7.1.1"
+psycopg2-binary = "==2.8.5"
+pytz = "==2019.3"
+sqlparse = "==0.3.1"
+Unipath = "==1.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+dev = "python manage.py runserver"
+make = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
