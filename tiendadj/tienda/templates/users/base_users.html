@@ -1,11 +1,54 @@
-{% extends "base.html" %}
-
-{% load  static %}
-
-{% block css %}
-
-{% endblock css %}
-
+{% extends "base.html" %} {% load static %} {% block css %} {% endblock css %}
 {% block js %}
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+<script>
+  const Login = () => {
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC16MbJO4qgPKZ1hq2e34hFHlmQ8FmsYIw",
+      authDomain: "django-pro-12fcc.firebaseapp.com",
+      databaseURL: "https://django-pro-12fcc.firebaseio.com",
+      projectId: "django-pro-12fcc",
+      storageBucket: "django-pro-12fcc.appspot.com",
+      messagingSenderId: "47355322444",
+      appId: "1:47355322444:web:2b2574668becde7fe494e9",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    //Provider
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function (result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+        console.log("***************************");
+        console.log(user);
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+        console.log("===========================");
+        console.log(error);
+      });
+  };
+</script>
 {% endblock js %}
