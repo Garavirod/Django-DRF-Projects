@@ -16,12 +16,12 @@ class LoginUser(TemplateView):
     template_name = "users/login.html"
 
 """ 
-    GoogloginView is a view that uses the serializer 
+    GoogleLoginView is a view that uses the serializer 
     LoginSocialSerializer to recieve the token
 
     APIView is like a Formview that no is for read, 
     delete or update, 
 
 """
-class GoogloginView(APIView):
+class GoogleLoginView(APIView):
     serializer_class = LoginSocialSerializer
