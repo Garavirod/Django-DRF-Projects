@@ -25,3 +25,6 @@ class LoginUser(TemplateView):
 """
 class GoogleLoginView(APIView):
     serializer_class = LoginSocialSerializer
+    #override
+    def post(self,request):
+        return None
