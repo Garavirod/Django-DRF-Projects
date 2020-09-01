@@ -27,4 +27,13 @@ class GoogleLoginView(APIView):
     serializer_class = LoginSocialSerializer
     #override
     def post(self,request):
+        # this line serializes the data in the request
+        serializer_data = self.serializer_class(data=request.data)
+        """ 
+            Validate the serialized data
+            verify is data is correctly abot the serielizer's structure
+        """
+        serializer_data.is_Valid(raise_exception=True)
+        # If data is valid then
+        token =  serializer_data.data.get('token_id')
         return None
