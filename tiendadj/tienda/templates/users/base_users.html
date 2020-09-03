@@ -33,9 +33,16 @@
         var token = result.credential.idToken;
         // The signed-in user info.
         var user = result.user;
+        // Recovering usertoken ID
+        user.getIdToken()
+        .then((idToken)=>{
+          console.log(idToken);
+        })
+        .catch(err=>{
+          console.log("Error in recovering token firebase", err);
+        });
         // ...
-        console.log("***************************");
-        console.log(token);
+
       })
       .catch(function (error) {
         // Handle Errors here.

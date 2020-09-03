@@ -1,5 +1,7 @@
 #Third party apps
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 from firebase_admin import auth
 #Django imports
 from django.shortcuts import render
@@ -37,7 +39,7 @@ class GoogleLoginView(APIView):
             Validate the serialized data
             verify is data is correctly abot the serielizer's structure
         """
-        serializer_data.is_Valid(raise_exception=True)
+        serializer_data.is_valid(raise_exception=True)
         # If data is valid then
         token =  serializer_data.data.get('token_id')
         # Decoded token by tools fribenase (auth)
@@ -56,4 +58,36 @@ class GoogleLoginView(APIView):
                 'is_active':True
             }
         )
-        return None
+
+
+        """
+            So far, google firebase has been used for decoding the token 
+            genereated for the same firbase,
+            when we have all infromation decoded we can manage that infromation 
+            with django.
+
+        """
+
+        # If user was created, token is vaed, if not token is recover
+        if created:
+            # Model Token from rest_framework.authtoken
+            token = Token.objects.create(user=_user)
+        else:
+            # Token that was created by django is returnded
+            token = Token.objects.get(user=_user) 
+
+        # Costum response
+        data_user = {
+            'id': _user.pk,
+            'email': _user.email,
+            'full_name':_user.full_name,
+            'genero':_user.genero,
+            'date_birth':_user.date_birth,
+            'city':_user.city
+        }
+        return Response(
+            {
+            'token':token.key, #for acurate token object
+            'data':data_user
+            }
+        )
