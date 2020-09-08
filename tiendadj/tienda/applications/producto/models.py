@@ -4,6 +4,20 @@ from django.conf import settings
 #
 from model_utils.models import TimeStampedModel
 
+"""
+    To create a backup no matter SGBD
+    python manage.py dumpdata > name_cpy.json
+    this creates a python dictinary with data
+
+
+    If you want to use the data previusly created or backed up
+    paste the data.json in the sema level where is manage.py file,
+    then type:
+
+    python manage loaddata data_file_name.json
+
+"""
+
 
 class Colors(models.Model):
     """ Representa color de un producto """
@@ -62,10 +76,10 @@ class Product(TimeStampedModel):
         'imagen principal',
         upload_to='producto',
     ) # imagen principal del producto
-    image1 = models.ImageField('Imagen 1', blank=True, null=True)
-    image2 = models.ImageField('Imagen 2', blank=True, null=True)
-    image3 = models.ImageField('Imagen 3', blank=True, null=True)
-    image4 = models.ImageField('Imagen 4', blank=True, null=True)
+    image1 = models.ImageField('Imagen 1', blank=True, null=True, upload_to='producto')
+    image2 = models.ImageField('Imagen 2', blank=True, null=True, upload_to='producto')
+    image3 = models.ImageField('Imagen 3', blank=True, null=True, upload_to='producto')
+    image4 = models.ImageField('Imagen 4', blank=True, null=True, upload_to='producto')
     colors = models.ManyToManyField(Colors)
     video = models.URLField('unboxin', blank=True, null=True)
     stok = models.PositiveIntegerField('Stok', default=0)
