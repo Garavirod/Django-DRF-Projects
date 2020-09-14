@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
 
+# Managers
+from .managers import ProductManager
+
+
 #
 from model_utils.models import TimeStampedModel
 
@@ -89,6 +93,10 @@ class Product(TimeStampedModel):
         on_delete=models.CASCADE,
         related_name="prod_created",
     )
+
+
+    # Conetcting the manager
+    objects = ProductManager()
 
     class Meta:
         verbose_name = 'Producto'
