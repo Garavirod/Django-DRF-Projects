@@ -12,6 +12,11 @@ urlpatterns = [
         'api/product/by-user/',
         views.ListProductByUserView.as_view(),
         name='product-by-user',
+    ),
+     path(
+        'api/product/by-stok/',
+        views.ListProductStok.as_view(),
+        name='product-by-stok',
     )
 ]
 
