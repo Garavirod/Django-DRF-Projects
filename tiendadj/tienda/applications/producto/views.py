@@ -22,7 +22,9 @@ from .models import (
     Product,
 )
 
-
+"""
+    Getting product that are asociated some user
+"""
 class ListProductByUserView(ListAPIView):
     """
         Override 
@@ -75,10 +77,30 @@ class ListProductStok(ListAPIView):
         return Product.objects.products_with_stock() #Custom filter
 
 
+"""
+    Filtering a product by gender
+"""
 class ListProductByGender(ListAPIView):
     serializer_class = ProductSerializer    
     def get_queryset(self):
         # Catching param
         _gender = self.kwargs['gender']
         return Product.objects.product_by_gender(_gender)
+    
+"""
+    Using query params with multimple params in request http GET 
+"""
+
+class ListProductsFilter(ListAPIView):
+    serializer_class = ProductSerializer
+    def get_queryset(self):
+        # None beacuse of it is posible recieve more params
+        varon = self.request.query_params.get('man', None) 
+        mujer = self.request.query_params.get('woman',None)
+        nombre = self.request.query_params.get('name',None)
+        return Product.objects.filter_products(
+            man = varon,
+            woman = mujer,
+            name = nombre,
+        );
     

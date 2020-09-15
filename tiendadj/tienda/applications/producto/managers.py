@@ -26,3 +26,10 @@ class ProductManager(models.Manager):
             woman=mujer,
             man=varon    
         )
+
+    def filter_products(self,**filters): # **filters many params
+        return self.filter(
+            man=filters['man'],
+            woman=filters['woman'],
+            name__icontains=filters['name'],
+        )
