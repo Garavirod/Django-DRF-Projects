@@ -74,3 +74,11 @@ class ListProductStok(ListAPIView):
     def get_queryset(self):
         return Product.objects.products_with_stock() #Custom filter
 
+
+class ListProductByGender(ListAPIView):
+    serializer_class = ProductSerializer    
+    def get_queryset(self):
+        # Catching param
+        _gender = self.kwargs['gender']
+        return Product.objects.product_by_gender(_gender)
+    

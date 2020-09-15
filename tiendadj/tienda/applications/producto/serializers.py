@@ -1,10 +1,26 @@
 #Third party apps
 from rest_framework import serializers
 #Models
-from .models import Product
+from .models import Product, Colors
 
 
+# COLORS
+
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Colors
+        fields = (
+            'color',
+        )
+
+
+
+# PRODUCT
 class ProductSerializer(serializers.ModelSerializer):
+
+    # Redefinig the atribute colors with other serializer, 'many=True' beacuse of are more than one
+    colors = ColorSerializer(many=True)
+
     # Connect the model
     class Meta:
         model = Product
@@ -26,4 +42,4 @@ class ProductSerializer(serializers.ModelSerializer):
             'stok',
             'num_sales',
             'user_created',            
-            )
+        )
