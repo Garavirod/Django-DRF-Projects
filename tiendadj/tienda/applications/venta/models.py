@@ -8,6 +8,10 @@ from model_utils.models import TimeStampedModel
 from applications.producto.models import Product
 
 
+# Managers 
+from .managers import SaleDetailManager
+
+
 class Sale(TimeStampedModel):
     """Modelo que representa a una Venta Global"""
 
@@ -104,6 +108,8 @@ class SaleDetail(TimeStampedModel):
     )
     anulate = models.BooleanField(default=False)
     #
+
+    objects = SaleDetailManager() #Connect manager
 
     class Meta:
         verbose_name = 'Detalle Venta'
