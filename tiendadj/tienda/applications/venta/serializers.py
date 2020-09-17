@@ -36,3 +36,19 @@ class DetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = SaleDetail
         fields = ('__all__')
+
+
+
+class ProductDetailSerializer(serializers.Serializer):
+    pk = serializers.IntegerField()
+    count = serializers.IntegerField()
+
+"""
+    Serialize a sale in process
+    This is the structure Fronted developer should send data
+"""
+class ProcessSaleSerializer(serializers.Serializer):
+    type_invoce =  serializers.CharField()
+    type_payment = serializers.CharField()
+    adreese_send = serializers.CharField()
+    product = ProductDetailSerializer(many=True) # Many serialized products 
