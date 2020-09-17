@@ -22,6 +22,7 @@ urlpatterns = [
     re_path('',include('applications.users.urls')),
     # product app urls path
     re_path('',include('applications.producto.urls')),
-    # 
+    # venta app url path
+    re_path('',include('applications.venta.urls'))
 
 ]
