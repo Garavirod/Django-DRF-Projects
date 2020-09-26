@@ -5,12 +5,14 @@ from rest_framework.generics import (
 )
 
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.response import Response
 from rest_framework.permissions import (
     IsAuthenticated,
 )
 
 # Django
 from django.shortcuts import render
+from django.utils import timezone
 
 # Serializers
 from . import serializers
@@ -48,7 +50,8 @@ class RegisterSaleView(CreateAPIView):
         """ 
             deserializing data from http (POST)
             It is recived data in a json fromat and 'ProcessSaleSerializer' 
-            deserialize that infromation
+            deserialize that infromation,
+            In brief, the frontend send infromation in a JSON fromat
         """ 
         _serialized_data = serializers.ProcessSaleSerializer(data=request.data)
 
@@ -56,5 +59,15 @@ class RegisterSaleView(CreateAPIView):
         _serialized_data.is_valid(raise_exception=True)
 
         # Access to data previosly validated
+        # tipo_recibo = _serialized_data.validated_data['type_invoce']
+        sale = Sale.objects.create(
+            date_sale= timezone.now(),
+            amount=0,
+            count=0,
+            type_invoce=_serialized_data.validated_data['type_invoce'],
+            type_payment="", #complete
+            adreese_send="",#complete
+            user="" #coplete
+        )
 
-        tipo_recibo = _serialized_data.validated_data['type_invoce']
+        return Response({'success':'ok'})
