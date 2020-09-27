@@ -39,9 +39,28 @@ class DetailSerializer(serializers.ModelSerializer):
 
 
 
+"""
+    This serializeer is used for deserializyng an object which 
+    data has Object structure 
+    {
+        pk: 1,
+        count:2,
+    }  
+"""
 class ProductDetailSerializer(serializers.Serializer):
     pk = serializers.IntegerField()
     count = serializers.IntegerField()
+
+
+""" 
+    This serializeer is used for deserializyng an object which 
+    data has Array structure 
+
+"""
+
+class ArrayIntegerSerializer(serializers.ListField):
+    child = serializers.IntegerField() #This represent an array of integers
+
 
 """
     Serialize a sale in process
@@ -52,3 +71,16 @@ class ProcessSaleSerializer(serializers.Serializer):
     type_payment = serializers.CharField()
     adreese_send = serializers.CharField()
     product = ProductDetailSerializer(many=True) # Many serialized products 
+
+
+
+"""
+    This serializer is used when an atribute is an array 
+    instead ann object Json
+"""
+class ProcessSaleSerializerV2(serializers.Serializer):
+    type_invoce =  serializers.CharField()
+    type_payment = serializers.CharField()
+    adreese_send = serializers.CharField()
+    product = ArrayIntegerSerializer()
+    quantities = ArrayIntegerSerializer()
