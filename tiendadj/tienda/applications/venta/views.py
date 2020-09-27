@@ -70,7 +70,7 @@ class RegisterSaleView(CreateAPIView):
             amount=0,
             count=0,
             type_invoce=_serialized_data.validated_data['type_invoce'],
-            type_payment=_serialized_data.validated_data['type_invoce'],
+            type_payment=_serialized_data.validated_data['type_payment'],
             adreese_send=_serialized_data.validated_data['adreese_send'],
             user=self.request.user,
         )
