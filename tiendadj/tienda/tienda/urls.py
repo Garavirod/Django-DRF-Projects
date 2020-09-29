@@ -23,6 +23,8 @@ urlpatterns = [
     # product app urls path
     re_path('',include('applications.producto.urls')),
     # venta app url path
-    re_path('',include('applications.venta.urls'))
+    re_path('',include('applications.venta.urls')),
+    # Colors path with routers and viewset
+    re_path('', include('applications.producto.routers'))
 
 ]

@@ -4,3 +4,20 @@ from rest_framework.routers import DefaultRouter
 from . import viewsets
 
 router = DefaultRouter() #This creates a router for conecting with the viewsets
+
+# Registering a route
+
+"""
+    The router catches the request
+    done based on http protocol, viewset is very useful
+    beacosue involes all viewsets such as :
+    
+        LisApiView,
+        DetailAPIView
+        Createview,
+        DeleteView.
+"""
+router.register(r'colors-list', viewsets.ColorViewSet,basename='colors')
+
+# Definfining urlpatterns
+urlpatterns = router.urls
