@@ -11,11 +11,14 @@ router = DefaultRouter() #This creates a router for conecting with the viewsets
     The router catches the request
     done based on http protocol, viewset is very useful
     beacosue involes all viewsets such as :
-    
+
         LisApiView,
         DetailAPIView
         Createview,
         DeleteView.
+
+    for DELETE, PUT OR DELETE
+    colors-list/pk/
 """
 router.register(r'colors-list', viewsets.ColorViewSet,basename='colors')
 
