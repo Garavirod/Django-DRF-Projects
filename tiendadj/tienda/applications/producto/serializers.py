@@ -1,5 +1,5 @@
 #Third party apps
-from rest_framework import serializers
+from rest_framework import serializers, pagination
 #Models
 from .models import Product, Colors
 
@@ -43,3 +43,20 @@ class ProductSerializer(serializers.ModelSerializer):
             'num_sales',
             'user_created',            
         )
+
+
+class ProductSerializerAll(serializers.ModelSerializer):
+    # Connect the model
+    class Meta:     
+        model = Product   
+        # Fields that the serializer will show in Json
+        fields = ('__all__')
+
+
+
+
+# Pagination
+
+class PaginationSerializer(pagination.PageNumberPagination):
+    page_size = 5
+    max_page = 50    

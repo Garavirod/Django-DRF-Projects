@@ -21,6 +21,7 @@ router = DefaultRouter() #This creates a router for conecting with the viewsets
     colors-list/pk/
 """
 router.register(r'colors-list', viewsets.ColorViewSet,basename='colors')
+router.register(r'products-list', viewsets.ProductViewset,basename='products-list')
 
 # Definfining urlpatterns
 urlpatterns = router.urls
