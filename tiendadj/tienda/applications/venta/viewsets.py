@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import (
     IsAuthenticated,
+    AllowAny
 )
 # serializer
 from .serializers import (
@@ -22,6 +23,7 @@ from applications.producto.models import Product
 
 # local
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 
 # It is not mandatory works with ModelViewSet
@@ -29,11 +31,24 @@ class ventaViewSet(viewsets.ViewSet):
 
     # Authetication verify
     authentication_classes = (TokenAuthentication,)
-    permission_classes = [
-        IsAuthenticated, #if is authenticated     
-    ] 
-    serializer_class = SaleReportSerializer
     queryset = Sale.objects.all()
+    """
+        ACTIONS : Viewset's actions (methods)
+        ACTIONS viewset are redefined below
+    """
+
+
+    def get_permissions(self):
+        """
+            We verify which kind of action is requeried by HTTP
+        """
+        if (self.action == 'list') or (self.action == 'retrieve'):
+            permission_classes = [AllowAny]
+        else :
+            permission_classes = [IsAuthenticated]
+        # Return an array of all permission that have been used
+        return [permission() for permission in permission_classes]
+
 
     """
         You must define each viewset's function, beacasue of in this casse.        
@@ -117,7 +132,8 @@ class ventaViewSet(viewsets.ViewSet):
 
     def retrieve(self,request,pk=None):
         # Recover object
-        sale = Sale.objects.get(id=pk)
+        # error_or_404 recieve a list of objects and its pk
+        sale = get_object_or_404(Sale.objects.all(),pk=pk)
         # Deserialize the object
         serializer = SaleReportSerializer(sale)
         # Retorn data

@@ -84,3 +84,17 @@ class ProcessSaleSerializerV2(serializers.Serializer):
     adreese_send = serializers.CharField()
     product = ArrayIntegerSerializer()
     quantities = ArrayIntegerSerializer()
+
+    """VIEWSETS VALIDATIONS"""
+
+    # data is the whole set of atributtes
+    def validate(sel,data):
+        if not data['type_payment'] in ['0','1','2']:
+            raise serializers.ValidationError('Please, set a correct type of payment')
+        return data
+
+    # 'Value' is an item that in execution time is been asigened to 'type_invoce'
+    def validate_type_invoce(self,value):
+        if not value in ['0','3','4']:
+            raise serializers.ValidationError('Please, set a correct value')
+        return value
