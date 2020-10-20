@@ -25,6 +25,7 @@ urlpatterns = [
     # venta app url path
     re_path('',include('applications.venta.urls')),
     # Colors path with routers and viewset
-    re_path('', include('applications.producto.routers'))
-
+    re_path('', include('applications.producto.routers')),
+    # Venta path with routers and viewset
+    re_path('',include('applications.venta.routers'))
 ]
