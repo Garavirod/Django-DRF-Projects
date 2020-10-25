@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+unipath = "*"
+psycopg2-binary = "==2.8.5"
+pillow = "==7.1.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+dev = "python manage.py runserver 127.0.0.1:8844"
+make = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
