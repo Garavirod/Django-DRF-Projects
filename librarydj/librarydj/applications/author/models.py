@@ -1,5 +1,8 @@
 from django.db import models
 
+# Managers
+from .managers import AuthorManager
+
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(
@@ -15,6 +18,9 @@ class Author(models.Model):
     )
 
     age = models.PositiveIntegerField()
+
+    # Connect the manager
+    object_manager = AuthorManager()
 
     def __str__(self):
         return self.name + " " + self.surname
