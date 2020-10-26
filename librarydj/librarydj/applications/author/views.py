@@ -11,7 +11,9 @@ class ListAuthors(ListView):
         author_name = self.request.GET.get("author_name","")
         # return Author.object_manager.getAuthorsList()
         # return Author.object_manager.searchAuthor(author_name)
-        return Author.object_manager.searchAuthorByFullName(author_name)
+        # return Author.object_manager.searchAuthorByFullName(author_name)
+        # return Author.object_manager.searchAuthorExcludeByAge(author_name)
+        return Author.object_manager.searchAuthorv5()
     
     
 

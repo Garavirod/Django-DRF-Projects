@@ -19,3 +19,19 @@ class AuthorManager(models.Manager):
             Q(name__icontains=author_name) | Q(surname__icontains=author_name)
         )
         return result
+
+    def searchAuthorExcludeByAge(self,author_name):
+        result = self.filter(
+            Q(name__icontains=author_name) | Q(surname__icontains=author_name)
+        )
+        result = result.exclude(age=60)
+        return result
+
+    # <= or >= 
+    def searchAuthorv5(self):
+        result = self.filter(
+            age__gt=40, #gratest than a comma references a logical 'and'
+            age__lt=60 #Lowest than
+        )
+        result = result.order_by('surname','name')
+        return result
