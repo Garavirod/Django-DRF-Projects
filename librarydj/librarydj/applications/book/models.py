@@ -7,7 +7,7 @@ from .managers import BookManager
 class Category(models.Model):
     name_category = models.CharField(max_length=30)
     def __str__(self):
-        return self.name_category
+        return str(self.id) + " - " + self.name_category
     
 
 class Book(models.Model):    

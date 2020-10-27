@@ -9,4 +9,9 @@ urlpatterns = [
         views.ListBookView.as_view(), 
         name="books"
     ),
+    path(
+        'books/category', 
+        views.ListBookCategory.as_view(), 
+        name="books-cat"
+    ),
 ]

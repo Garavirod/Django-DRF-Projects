@@ -20,4 +20,14 @@ class ListBookView(ListView):
             return Book.object_manager.BookList(title_book,date_1,date_2)
         else:
             return Book.object_manager.BookListAll(title_book)
+
+class ListBookCategory(ListView):
+    context_object_name = "book_list_category" #object that is shared in a template
+    template_name = "book/book_category_list.html" #Template
+    # Category
+    def get_queryset(self):
+        category = '3'
+        return Book.object_manager.BookListByCategory(category)
     
+
+        

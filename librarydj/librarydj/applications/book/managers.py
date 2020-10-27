@@ -18,3 +18,11 @@ class BookManager(models.Manager):
             date__range=(d1,d2)
         )
         return result
+
+    def BookListByCategory(self,cat):
+        result = self.filter(
+            # Model1Attr__Model2Attr(FK:atribute) or id if you want a unique identifier
+            category__id=cat
+        ).order_by('title')
+
+        return result
