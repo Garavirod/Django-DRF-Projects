@@ -26,3 +26,19 @@ class BookManager(models.Manager):
         ).order_by('title')
 
         return result
+
+class CategoryManager(models.Manager):
+    def categoryByAuthor(self,author):
+        """
+            Model CategoryModel access to Book through 'category_book'
+            Book access to AuthorModel thorugh 'author' to arrive id
+        """
+        # Find categories
+        result = self.filter(
+            category_book__author__id=author
+        )
+        # exclude repetitive items
+        result = result.distinct()
+        # Order by category name
+        result = result.order_by('name_category')
+        return result

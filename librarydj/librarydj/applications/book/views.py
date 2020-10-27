@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 
 # Models
-from .models import Book
+from .models import Book, Category
 # Create your views here.
 
 class ListBookView(ListView):
@@ -30,4 +30,11 @@ class ListBookCategory(ListView):
         return Book.object_manager.BookListByCategory(category)
     
 
-        
+
+class ListBookCategoryAuthor(ListView):
+    context_object_name = "books_category_auth" #object that is shared in a template
+    template_name = "category/books_category_auth.html" #Template
+    # Category
+    def get_queryset(self):
+        author = '2'
+        return Category.object_manager.categoryByAuthor(author)

@@ -23,5 +23,5 @@ class Author(models.Model):
     object_manager = AuthorManager()
 
     def __str__(self):
-        return self.name + " " + self.surname
+        return str(self.id) + " - " + self.name + " " + self.surname
     
