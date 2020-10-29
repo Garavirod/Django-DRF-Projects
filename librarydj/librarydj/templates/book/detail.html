@@ -6,11 +6,11 @@
 
 <h5>Written by</h5>
 <ul>
+{% comment %} auhtor is model's name but in lower case {% endcomment %}
     {% for author in book.author.all %}
         <li>{{author.name}}</li>
     {% endfor %}
 </ul>
-
 <h5>Add new author</h5>
 <form method="POST"> {% csrf_token %}
     <input type="text" placeholder="new autor" name="keyword" id="keyword"/>
