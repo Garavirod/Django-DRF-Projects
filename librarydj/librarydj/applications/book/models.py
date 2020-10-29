@@ -18,6 +18,7 @@ class Book(models.Model):
         # Related name for foreign models asociated
         related_name = 'category_book' # Foreign model can access through this attr
     )
+    # author is a list with all authors because of ManyToManyField
     author = models.ManyToManyField(Author)    
     title = models.CharField(max_length=50)
     date = models.DateField('Launch date')
@@ -28,5 +29,5 @@ class Book(models.Model):
     object_manager = BookManager()
 
     def __str__(self):
-        return self.title
+        return str(self.id) + " - " + self.title
     

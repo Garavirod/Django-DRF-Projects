@@ -14,9 +14,14 @@ urlpatterns = [
         views.ListBookCategory.as_view(), 
         name="books-cat"
     ),
-        path(
+    path(
         'books/category-author', 
         views.ListBookCategoryAuthor.as_view(), 
         name="books-cat-author"
-    ),
+    ),    
+    path(
+        'books/detail/<pk>/', 
+        views.BookDetailView.as_view(), 
+        name="books-detail"
+    )
 ]

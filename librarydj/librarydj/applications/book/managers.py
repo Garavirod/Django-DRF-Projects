@@ -27,6 +27,16 @@ class BookManager(models.Manager):
 
         return result
 
+    def AddNewAuthorToBook(self,book_id,author):
+        book = self.get(id=book_id)
+        book.author.add(author)
+        return book
+
+    def RemoveAuthorToBook(self,book_id,author):
+        book = self.get(id=book_id)
+        book.author.remove(author)
+        return book
+
 class CategoryManager(models.Manager):
     def categoryByAuthor(self,author):
         """
