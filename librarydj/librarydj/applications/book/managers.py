@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.db.models import Q, Count
 
 class BookManager(models.Manager):
 
@@ -51,4 +52,21 @@ class CategoryManager(models.Manager):
         result = result.distinct()
         # Order by category name
         result = result.order_by('name_category')
+        return result
+
+
+    """
+        This query brings all categories including the number of books
+        that it has got.
+
+        cat1 - cat.name  - numbooks
+    """
+    def ListCategoryBook(self):
+        result = self.annotate(
+            num_books =  Count('category_book') #count bum of  book that has got each category
+        )
+
+        for r in result:
+            print("******")
+            print(r, r.num_books)
         return result
