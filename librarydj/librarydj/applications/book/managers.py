@@ -38,6 +38,17 @@ class BookManager(models.Manager):
         book.author.remove(author)
         return book
 
+    """
+        Times one book has been borrowed
+        agregate returns a dictionary with a value
+    """
+
+    def CountBorrowingTimes(self):
+        result = self.aggregate(
+            num_borrowings =  Count('borrowing')
+        )
+        return result
+
 class CategoryManager(models.Manager):
     def categoryByAuthor(self,author):
         """
@@ -58,8 +69,8 @@ class CategoryManager(models.Manager):
     """
         This query brings all categories including the number of books
         that it has got.
-
         cat1 - cat.name  - numbooks
+        'anotate' return a queryset with another column
     """
     def ListCategoryBook(self):
         result = self.annotate(
