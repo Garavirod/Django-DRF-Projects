@@ -70,7 +70,7 @@ class CategoryManager(models.Manager):
         This query brings all categories including the number of books
         that it has got.
         cat1 - cat.name  - numbooks
-        'anotate' return a queryset with another column
+        'anotate' return a queryset with another column added
     """
     def ListCategoryBook(self):
         result = self.annotate(
