@@ -16,7 +16,7 @@ class Book(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE,
         # Related name for foreign models asociated
-        related_name = 'category_book' # Foreign model can access through this attr
+        related_name = 'category_book' # A foreign model can access through this attribute's name
     )
     # author is a list with all authors because of ManyToManyField
     author = models.ManyToManyField(Author)    

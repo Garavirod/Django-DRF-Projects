@@ -81,3 +81,13 @@ class CategoryManager(models.Manager):
             print("******")
             print(r, r.num_books)
         return result
+    
+    def NumBookBorrowings(self):
+        result=self.annotate(
+            num_books=Count('borrowing')
+        )
+
+        for r in result:
+            print(r.num_books)
+    
+        return result
