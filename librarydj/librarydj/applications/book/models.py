@@ -35,6 +35,12 @@ class Book(models.Model):
     # Manager connection
     object_manager = BookManager()
 
+    # Metadata descriptions
+    class Meta:
+        verbose_name= 'Libro'
+        verbose_name_plural= 'Libros'
+        ordering =['title', 'date']
+        
     def __str__(self):
         return str(self.id) + " - " + self.title
     
