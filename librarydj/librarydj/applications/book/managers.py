@@ -1,15 +1,28 @@
 import datetime
 from django.db import models
 from django.db.models import Q, Count
+from django.contrib.postgres.search import TrigramSimilarity
 
 class BookManager(models.Manager):
 
     def BookListAll(self,kword):
         result = self.filter(
-            title__icontains=kword,
+            title__icontains=kword, #find in the model where title contains kword
             date__range=('2000-01-01','2020-12-12')
         )
         return result
+
+
+    """ This methos uses trigram Postrgres """
+    def BookListTrigram(self,kword):
+
+        if len(kword)>2:            
+            result = self.filter(
+                title__trigram_similar=kword, 
+            )
+            return result
+        else:
+            return self.all()[:10]
 
     def BookList(self,kword,date1,date2):
         d1 = datetime.datetime.strptime(date1,'%Y-%m-%d').date()

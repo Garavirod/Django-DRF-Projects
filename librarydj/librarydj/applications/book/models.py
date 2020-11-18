@@ -1,6 +1,13 @@
 from django.db import models
 from applications.author.models import Author
 
+
+""" 
+    To access on postrges directily in a DB
+    sudo -u postgres psql dblibrary
+"""
+
+
 # Managers
 from .managers import BookManager, CategoryManager
 # Create your models here.

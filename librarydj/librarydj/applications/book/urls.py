@@ -10,6 +10,11 @@ urlpatterns = [
         name="books"
     ),
     path(
+        'books-trg/', 
+        views.ListBookViewTrigram.as_view(), 
+        name="books-trg"
+    ),
+    path(
         'books/category', 
         views.ListBookCategory.as_view(), 
         name="books-cat"

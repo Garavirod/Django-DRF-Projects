@@ -21,6 +21,16 @@ class ListBookView(ListView):
         else:
             return Book.object_manager.BookListAll(title_book)
 
+""" view with trigram postgres """
+class ListBookViewTrigram(ListView):
+    context_object_name = "books_list" #object that is shared in a template
+    template_name = "book/book_list.html"
+
+    def get_queryset(self):
+        # Book title
+        title_book = self.request.GET.get("kword","")
+        return Book.object_manager.BookListTrigram(title_book)
+
 class ListBookCategory(ListView):
     context_object_name = "book_list_category" #object that is shared in a template
     template_name = "book/book_category_list.html" #Template
