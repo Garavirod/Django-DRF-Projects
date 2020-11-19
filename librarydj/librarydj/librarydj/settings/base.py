@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',    
     # Local
+    'applications.home',
     'applications.author',
     'applications.book',
     'applications.reader'
