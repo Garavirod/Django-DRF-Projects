@@ -22,8 +22,18 @@ class Person(models.Model):
             models.CheckConstraint(check=models.Q(age__gte=18), name="age_restrict")
         ]
 
+        """ 
+            To avoid create a Model in BDD which 'Model' can be just
+            like a reference that can be used in herence.
+            we use abstract=true,so do not register in Admin.  
+        """
+        abstract = True
+
     def __str__(self):
         return self.full_name
 
     # def get_absolute_url(self):
     #     return reverse("Person_detail", kwargs={"pk": self.pk})
+
+class Employee(Person):
+    position=models.CharField('Position', max_length=50)
